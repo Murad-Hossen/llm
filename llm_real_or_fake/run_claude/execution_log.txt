@@ -1,0 +1,33 @@
+/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_real_or_fake/Real_Or_Fake/solution.py:178: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:837.)
+  tl += float(loss) * d.num_graphs
+[load] features...
+  bert (314262, 768) spacy (314262, 300) profile (314262, 10)
+  combined node features: (314262, 1078)
+[build] grouping nodes/edges by graph...
+[build] PyG datasets...
+  train=3826 val=546 test=1092  (2.0s)
+[train]
+  ep00  loss=0.3809  val_f1=0.9333  val_acc=0.9304
+  ep01  loss=0.1960  val_f1=0.9365  val_acc=0.9322
+  ep02  loss=0.1396  val_f1=0.9514  val_acc=0.9505
+  ep03  loss=0.1081  val_f1=0.9561  val_acc=0.9542
+  ep04  loss=0.0894  val_f1=0.9640  val_acc=0.9634
+  ep05  loss=0.0718  val_f1=0.9504  val_acc=0.9469
+  ep06  loss=0.0660  val_f1=0.9683  val_acc=0.9670
+  ep07  loss=0.0755  val_f1=0.9668  val_acc=0.9652
+  ep08  loss=0.0560  val_f1=0.9684  val_acc=0.9670
+  ep09  loss=0.0500  val_f1=0.9695  val_acc=0.9689
+  ep10  loss=0.0493  val_f1=0.9686  val_acc=0.9670
+  ep11  loss=0.0461  val_f1=0.9717  val_acc=0.9707
+  ep12  loss=0.0405  val_f1=0.9714  val_acc=0.9707
+  ep13  loss=0.0417  val_f1=0.9700  val_acc=0.9689
+  ep14  loss=0.0332  val_f1=0.9734  val_acc=0.9725
+  ep15  loss=0.0339  val_f1=0.9676  val_acc=0.9670
+  ep16  loss=0.0393  val_f1=0.9464  val_acc=0.9469
+  ep17  loss=0.0320  val_f1=0.9734  val_acc=0.9725
+  ep18  loss=0.0193  val_f1=0.9700  val_acc=0.9689
+  ep19  loss=0.0277  val_f1=0.9697  val_acc=0.9689
+  early stop at epoch 19
+[tune] best_threshold=0.53  val_f1=0.9768  val_acc=0.9762
+[done] wrote submissions/sample_submission/predictions.csv  (1092 rows)  val_f1=0.9768

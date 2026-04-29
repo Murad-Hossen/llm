@@ -1,0 +1,2 @@
+val_auc,val_ap,epochs_run,elapsed_s,n_train_pairs,n_val_pairs,n_test_pairs,mp_edges_undirected
+0.6933515358690766,0.684990956430389,200,23.157493829727173,5460,1822,1822,5460

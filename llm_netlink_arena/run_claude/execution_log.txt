@@ -1,0 +1,55 @@
+[load] node_features...
+  features: (3327, 2742)
+  train_edges=5460  val_edges=1822  test_edges=1822
+  message-passing edges (undirected): 5460
+[train]
+  ep000  loss=0.7098  val_auc=0.4574  val_ap=0.4727  *
+  ep001  loss=0.6803  val_auc=0.4619  val_ap=0.4844  *
+  ep002  loss=1.2246  val_auc=0.4715  val_ap=0.4856  *
+  ep003  loss=0.6664  val_auc=0.6016  val_ap=0.6274  *
+  ep004  loss=0.6926  val_auc=0.5719  val_ap=0.6283
+  ep005  loss=0.6996  val_auc=0.5397  val_ap=0.6145
+  ep006  loss=0.7065  val_auc=0.5453  val_ap=0.6139
+  ep007  loss=0.7075  val_auc=0.5494  val_ap=0.6298
+  ep008  loss=0.7063  val_auc=0.5492  val_ap=0.6358
+  ep009  loss=0.7049  val_auc=0.5655  val_ap=0.6433
+  ep010  loss=0.7010  val_auc=0.5755  val_ap=0.6483
+  ep015  loss=0.6670  val_auc=0.5670  val_ap=0.6390
+  ep020  loss=0.6436  val_auc=0.5698  val_ap=0.6476
+  ep025  loss=0.6279  val_auc=0.5692  val_ap=0.6487
+  ep030  loss=0.5917  val_auc=0.5973  val_ap=0.6663
+  ep035  loss=0.5727  val_auc=0.6142  val_ap=0.6879  *
+  ep040  loss=0.5587  val_auc=0.6194  val_ap=0.6882  *
+  ep045  loss=0.5374  val_auc=0.6182  val_ap=0.6834
+  ep050  loss=0.5144  val_auc=0.6344  val_ap=0.6922  *
+  ep055  loss=0.4956  val_auc=0.6676  val_ap=0.7096  *
+  ep060  loss=0.4712  val_auc=0.6853  val_ap=0.7160  *
+  ep065  loss=0.4455  val_auc=0.6868  val_ap=0.7067  *
+  ep070  loss=0.4241  val_auc=0.6829  val_ap=0.6972
+  ep075  loss=0.4047  val_auc=0.6789  val_ap=0.6858
+  ep080  loss=0.3838  val_auc=0.6753  val_ap=0.6808
+  ep085  loss=0.3745  val_auc=0.6732  val_ap=0.6757
+  ep090  loss=0.3503  val_auc=0.6703  val_ap=0.6678
+  ep095  loss=0.3415  val_auc=0.6685  val_ap=0.6674
+  ep100  loss=0.3442  val_auc=0.6691  val_ap=0.6658
+  ep105  loss=0.3191  val_auc=0.6740  val_ap=0.6695
+  ep110  loss=0.3091  val_auc=0.6735  val_ap=0.6682
+  ep115  loss=0.3043  val_auc=0.6735  val_ap=0.6649
+  ep120  loss=0.2972  val_auc=0.6766  val_ap=0.6695
+  ep125  loss=0.2792  val_auc=0.6757  val_ap=0.6705
+  ep130  loss=0.2640  val_auc=0.6781  val_ap=0.6714
+  ep135  loss=0.2516  val_auc=0.6817  val_ap=0.6740
+  ep140  loss=0.2516  val_auc=0.6829  val_ap=0.6699
+  ep145  loss=0.2336  val_auc=0.6857  val_ap=0.6760
+  ep150  loss=0.2354  val_auc=0.6848  val_ap=0.6726
+  ep155  loss=0.2262  val_auc=0.6883  val_ap=0.6756  *
+  ep160  loss=0.2141  val_auc=0.6862  val_ap=0.6770
+  ep165  loss=0.2016  val_auc=0.6867  val_ap=0.6765
+  ep170  loss=0.1899  val_auc=0.6903  val_ap=0.6798  *
+  ep175  loss=0.1907  val_auc=0.6887  val_ap=0.6778
+  ep180  loss=0.1737  val_auc=0.6928  val_ap=0.6813  *
+  ep185  loss=0.1707  val_auc=0.6915  val_ap=0.6835
+  ep190  loss=0.1624  val_auc=0.6894  val_ap=0.6798
+  ep195  loss=0.1587  val_auc=0.6934  val_ap=0.6850  *
+[done] best val_auc=0.6934  (23.2s)
+[write] predictions.csv  (1822 rows, 0.000..1.000)

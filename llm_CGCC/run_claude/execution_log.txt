@@ -1,0 +1,13 @@
+[load] graphs...
+  train=84 test=36
+  class counts (train): [22 26 36]
+  class weights: [1.221 1.033 0.746]
+[cv] 5-fold stratified...
+  fold0: best val_macro_f1 = 0.8301 (epoch ~70)
+  fold1: best val_macro_f1 = 0.6627 (epoch ~47)
+  fold2: best val_macro_f1 = 0.6919 (epoch ~36)
+  fold3: best val_macro_f1 = 0.6496 (epoch ~43)
+  fold4: best val_macro_f1 = 0.7579 (epoch ~38)
+[cv] mean fold val_macro_f1 = 0.7184 ± 0.0672  (8.7s)
+[cv] OOF Macro-F1 = 0.7167, OOF Acc = 0.7143
+[write] submission.csv  (36 rows)
