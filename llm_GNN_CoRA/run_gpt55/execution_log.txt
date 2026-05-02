@@ -1,0 +1,20 @@
+[load] repo_root=/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_GNN_CoRA/GNN_CoRA
+[data] X=(2708, 1433) edges=10556 train=140 val=500 test=1000
+[train] SGC candidates
+  sgc K=2 C=0.01 val_acc=0.6580
+  sgc K=2 C=0.03 val_acc=0.6660
+  sgc K=2 C=0.10 val_acc=0.6540
+  sgc K=3 C=0.01 val_acc=0.6800
+  sgc K=3 C=0.03 val_acc=0.6740
+  sgc K=3 C=0.10 val_acc=0.6780
+  sgc K=4 C=0.01 val_acc=0.7100
+  sgc K=4 C=0.03 val_acc=0.7120
+  sgc K=4 C=0.10 val_acc=0.7080
+[smooth] label propagation candidates
+  label_prop alpha=0.90 val_acc=0.7040
+  label_prop alpha=0.95 val_acc=0.7040
+  label_prop alpha=0.98 val_acc=0.7080
+  label_prop alpha=0.99 val_acc=0.7120
+[ensemble] val_acc=0.7320
+[done] wrote /Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_GNN_CoRA/run_gpt55/predictions.csv (1000 rows)
+[time] wall_clock_sec=0.87

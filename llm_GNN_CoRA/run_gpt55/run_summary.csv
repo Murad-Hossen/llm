@@ -1,0 +1,2 @@
+val_acc,n_train,n_val,n_test,n_candidates,wall_clock_sec,repair_iterations
+0.732,140,500,1000,13,0.873582124710083,0
