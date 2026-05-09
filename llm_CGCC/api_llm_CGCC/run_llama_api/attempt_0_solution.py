@@ -1,0 +1,133 @@
+import pandas as pd
+import torch
+from torch_geometric.data import DataLoader
+from torch_geometric.nn import GCNConv
+from torch.nn import Linear, Dropout
+from torch.optim import Adam
+from sklearn.metrics import f1_score
+import numpy as np
+import random
+from torch.utils.data import Dataset
+
+# Set seeds for reproducibility
+np.random.seed(42)
+torch.manual_seed(42)
+random.seed(42)
+
+# Define the graph loading function
+def nx_to_pyg(path):
+    with open(path, 'rb') as f:
+        G = pickle.load(f)
+    nodes = list(G.nodes())
+    id_map = {n: i for i, n in enumerate(nodes)}
+    edges = [(id_map[u], id_map[v]) for u, v, *_ in G.edges()
+             if u in id_map and v in id_map]
+    if edges:
+        edge_index = torch.tensor(edges, dtype=torch.long).t().contiguous()
+    else:
+        edge_index = torch.zeros((2, 0), dtype=torch.long)
+    x_list = [[G.nodes[n].get('x', 0.0),
+               G.nodes[n].get('y', 0.0),
+               float(G.degree(n))] for n in nodes]
+    x = torch.tensor(x_list, dtype=torch.float)
+    return Data(x=x, edge_index=edge_index, num_nodes=len(nodes))
+
+# Define the dataset class
+class GraphDataset(Dataset):
+    def __init__(self, paths, labels):
+        self.paths = paths
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.paths)
+
+    def __getitem__(self, idx):
+        path = self.paths[idx]
+        label = self.labels[idx]
+        graph = nx_to_pyg(path)
+        return graph, label
+
+# Load the training data
+train_labels = pd.read_csv('data/train_labels.csv')
+train_paths = train_labels['filename'].apply(lambda x: f'data/train/{x}')
+train_labels = train_labels['target']
+train_dataset = GraphDataset(train_paths, train_labels)
+
+# Define the model
+class GNN(torch.nn.Module):
+    def __init__(self):
+        super(GNN, self).__init__()
+        self.conv1 = GCNConv(3, 16)
+        self.conv2 = GCNConv(16, 16)
+        self.pool = torch.nn.Linear(16, 16)
+        self.dropout = Dropout(p=0.5)
+        self.fc = Linear(16, 3)
+
+    def forward(self, data):
+        x, edge_index = data.x, data.edge_index
+        x = torch.relu(self.conv1(x, edge_index))
+        x = torch.relu(self.conv2(x, edge_index))
+        x = self.pool(x)
+        x = self.dropout(x)
+        x = self.fc(x)
+        return x
+
+# Train the model
+device = torch.device('cpu')
+model = GNN().to(device)
+criterion = torch.nn.CrossEntropyLoss()
+optimizer = Adam(model.parameters(), lr=0.01)
+
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+for epoch in range(100):
+    model.train()
+    total_loss = 0
+    for batch in train_loader:
+        graphs, labels = batch
+        graphs = graphs.to(device)
+        labels = labels.to(device)
+        optimizer.zero_grad()
+        outputs = model(graphs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    print(f'Epoch {epoch+1}, Loss: {total_loss / len(train_loader)}')
+
+    # Validate the model
+    model.eval()
+    val_loader = DataLoader(train_dataset, batch_size=32, shuffle=False)
+    total_correct = 0
+    total_labels = []
+    total_preds = []
+    with torch.no_grad():
+        for batch in val_loader:
+            graphs, labels = batch
+            graphs = graphs.to(device)
+            labels = labels.to(device)
+            outputs = model(graphs)
+            _, preds = torch.max(outputs, dim=1)
+            total_correct += (preds == labels).sum().item()
+            total_labels.extend(labels.cpu().numpy())
+            total_preds.extend(preds.cpu().numpy())
+    accuracy = total_correct / len(train_dataset)
+    macro_f1 = f1_score(total_labels, total_preds, average='macro')
+    print(f'Validation Accuracy: {accuracy:.4f}, Macro F1: {macro_f1:.4f}')
+
+# Make predictions on the test set
+test_paths = [f'data/test/{x}' for x in os.listdir('data/test')]
+test_dataset = GraphDataset(test_paths, [0] * len(test_paths))
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+model.eval()
+test_preds = []
+with torch.no_grad():
+    for batch in test_loader:
+        graphs, _ = batch
+        graphs = graphs.to(device)
+        outputs = model(graphs)
+        _, preds = torch.max(outputs, dim=1)
+        test_preds.extend(preds.cpu().numpy())
+
+# Write the predictions to a submission.csv file
+submission_df = pd.DataFrame({'filename': [x.split('/')[-1] for x in test_paths], 'prediction': test_preds})
+submission_df.to_csv('submission.csv', index=False)

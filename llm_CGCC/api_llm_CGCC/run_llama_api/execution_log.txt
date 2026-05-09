@@ -1,0 +1,209 @@
+attempt=3
+returncode=0
+elapsed_sec=20.88
+
+STDOUT:
+Epoch 1, Loss: 1.9650460879007976
+Validation Accuracy: 0.5000, Macro F1: 0.3873
+Epoch 2, Loss: 1.9847138325373332
+Validation Accuracy: 0.4881, Macro F1: 0.3806
+Epoch 3, Loss: 2.036267121632894
+Validation Accuracy: 0.5476, Macro F1: 0.4981
+Epoch 4, Loss: 1.3318490982055664
+Validation Accuracy: 0.5238, Macro F1: 0.4666
+Epoch 5, Loss: 1.3261936108271282
+Validation Accuracy: 0.5119, Macro F1: 0.4424
+Epoch 6, Loss: 1.2164796789487202
+Validation Accuracy: 0.4881, Macro F1: 0.4229
+Epoch 7, Loss: 1.1370848814646404
+Validation Accuracy: 0.5238, Macro F1: 0.4384
+Epoch 8, Loss: 1.0873496929804485
+Validation Accuracy: 0.5714, Macro F1: 0.5030
+Epoch 9, Loss: 1.0486041903495789
+Validation Accuracy: 0.5595, Macro F1: 0.5083
+Epoch 10, Loss: 1.0909820596377056
+Validation Accuracy: 0.5476, Macro F1: 0.4915
+Epoch 11, Loss: 0.9340788920720419
+Validation Accuracy: 0.5238, Macro F1: 0.4666
+Epoch 12, Loss: 1.0463961561520894
+Validation Accuracy: 0.5119, Macro F1: 0.4439
+Epoch 13, Loss: 1.011183261871338
+Validation Accuracy: 0.5357, Macro F1: 0.4850
+Epoch 14, Loss: 0.9704289237658182
+Validation Accuracy: 0.5476, Macro F1: 0.4963
+Epoch 15, Loss: 0.9455565412839254
+Validation Accuracy: 0.5476, Macro F1: 0.4981
+Epoch 16, Loss: 0.9912729263305664
+Validation Accuracy: 0.5595, Macro F1: 0.5096
+Epoch 17, Loss: 0.9378015001614889
+Validation Accuracy: 0.5357, Macro F1: 0.4867
+Epoch 18, Loss: 0.9330722093582153
+Validation Accuracy: 0.5714, Macro F1: 0.5172
+Epoch 19, Loss: 0.875037670135498
+Validation Accuracy: 0.5714, Macro F1: 0.5153
+Epoch 20, Loss: 0.9138282140096029
+Validation Accuracy: 0.5595, Macro F1: 0.5066
+Epoch 21, Loss: 0.9434894124666849
+Validation Accuracy: 0.5476, Macro F1: 0.4973
+Epoch 22, Loss: 0.8846920331319174
+Validation Accuracy: 0.5595, Macro F1: 0.5077
+Epoch 23, Loss: 0.9018914500872294
+Validation Accuracy: 0.5833, Macro F1: 0.5124
+Epoch 24, Loss: 0.880947212378184
+Validation Accuracy: 0.5952, Macro F1: 0.5241
+Epoch 25, Loss: 0.8799936572710673
+Validation Accuracy: 0.5833, Macro F1: 0.5127
+Epoch 26, Loss: 0.9181090195973715
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 27, Loss: 0.8691265980402628
+Validation Accuracy: 0.6071, Macro F1: 0.5471
+Epoch 28, Loss: 0.8603256940841675
+Validation Accuracy: 0.5952, Macro F1: 0.5372
+Epoch 29, Loss: 0.8525940577189127
+Validation Accuracy: 0.5952, Macro F1: 0.5372
+Epoch 30, Loss: 0.809939424196879
+Validation Accuracy: 0.5952, Macro F1: 0.5385
+Epoch 31, Loss: 0.8682418068250021
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 32, Loss: 0.8048237959543864
+Validation Accuracy: 0.6071, Macro F1: 0.5489
+Epoch 33, Loss: 0.8155518968900045
+Validation Accuracy: 0.6071, Macro F1: 0.5626
+Epoch 34, Loss: 0.7766364415486654
+Validation Accuracy: 0.5952, Macro F1: 0.5531
+Epoch 35, Loss: 0.8398210604985555
+Validation Accuracy: 0.5952, Macro F1: 0.5394
+Epoch 36, Loss: 0.8502553701400757
+Validation Accuracy: 0.6071, Macro F1: 0.5499
+Epoch 37, Loss: 0.7925360401471456
+Validation Accuracy: 0.6071, Macro F1: 0.5418
+Epoch 38, Loss: 0.8887512882550558
+Validation Accuracy: 0.6071, Macro F1: 0.5418
+Epoch 39, Loss: 0.8488767941792806
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 40, Loss: 0.7855069239934286
+Validation Accuracy: 0.6310, Macro F1: 0.5664
+Epoch 41, Loss: 0.7649784882863363
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 42, Loss: 0.7676401336987814
+Validation Accuracy: 0.6071, Macro F1: 0.5471
+Epoch 43, Loss: 0.7620880603790283
+Validation Accuracy: 0.6429, Macro F1: 0.6027
+Epoch 44, Loss: 0.7521608074506124
+Validation Accuracy: 0.5833, Macro F1: 0.5326
+Epoch 45, Loss: 0.755765457948049
+Validation Accuracy: 0.5952, Macro F1: 0.5553
+Epoch 46, Loss: 0.7769907712936401
+Validation Accuracy: 0.6310, Macro F1: 0.5818
+Epoch 47, Loss: 0.7578990459442139
+Validation Accuracy: 0.6190, Macro F1: 0.5679
+Epoch 48, Loss: 0.8374305168787638
+Validation Accuracy: 0.6190, Macro F1: 0.5650
+Epoch 49, Loss: 0.7510824998219808
+Validation Accuracy: 0.6190, Macro F1: 0.5585
+Epoch 50, Loss: 0.8364242911338806
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 51, Loss: 0.801252007484436
+Validation Accuracy: 0.5952, Macro F1: 0.5372
+Epoch 52, Loss: 0.8120933373769125
+Validation Accuracy: 0.6310, Macro F1: 0.5664
+Epoch 53, Loss: 0.7715168992678324
+Validation Accuracy: 0.6190, Macro F1: 0.5585
+Epoch 54, Loss: 0.8540018796920776
+Validation Accuracy: 0.6429, Macro F1: 0.5795
+Epoch 55, Loss: 0.7928667267163595
+Validation Accuracy: 0.6071, Macro F1: 0.5588
+Epoch 56, Loss: 0.8022369941075643
+Validation Accuracy: 0.6548, Macro F1: 0.6014
+Epoch 57, Loss: 0.7456381519635519
+Validation Accuracy: 0.6429, Macro F1: 0.5805
+Epoch 58, Loss: 0.7693571845690409
+Validation Accuracy: 0.6071, Macro F1: 0.5519
+Epoch 59, Loss: 0.774037222067515
+Validation Accuracy: 0.6310, Macro F1: 0.5843
+Epoch 60, Loss: 0.8126490116119385
+Validation Accuracy: 0.6071, Macro F1: 0.5447
+Epoch 61, Loss: 0.734473705291748
+Validation Accuracy: 0.6310, Macro F1: 0.5664
+Epoch 62, Loss: 0.7741328279177347
+Validation Accuracy: 0.6310, Macro F1: 0.5664
+Epoch 63, Loss: 0.8103173573811849
+Validation Accuracy: 0.6190, Macro F1: 0.5585
+Epoch 64, Loss: 0.801596482594808
+Validation Accuracy: 0.6429, Macro F1: 0.5930
+Epoch 65, Loss: 0.7593024174372355
+Validation Accuracy: 0.6548, Macro F1: 0.6027
+Epoch 66, Loss: 0.752543568611145
+Validation Accuracy: 0.6548, Macro F1: 0.6031
+Epoch 67, Loss: 0.7655865947405497
+Validation Accuracy: 0.6190, Macro F1: 0.5600
+Epoch 68, Loss: 0.7944788734118143
+Validation Accuracy: 0.6310, Macro F1: 0.5697
+Epoch 69, Loss: 0.7945720354715983
+Validation Accuracy: 0.6429, Macro F1: 0.5795
+Epoch 70, Loss: 0.7582684556643168
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 71, Loss: 0.7356264789899191
+Validation Accuracy: 0.6071, Macro F1: 0.5489
+Epoch 72, Loss: 0.7541407545407613
+Validation Accuracy: 0.6429, Macro F1: 0.5940
+Epoch 73, Loss: 0.7375361720720927
+Validation Accuracy: 0.6548, Macro F1: 0.6039
+Epoch 74, Loss: 0.7362759510676066
+Validation Accuracy: 0.6429, Macro F1: 0.5795
+Epoch 75, Loss: 0.7661761045455933
+Validation Accuracy: 0.6429, Macro F1: 0.5795
+Epoch 76, Loss: 0.7780500451723734
+Validation Accuracy: 0.6310, Macro F1: 0.5683
+Epoch 77, Loss: 0.8520502249399821
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 78, Loss: 0.7602921724319458
+Validation Accuracy: 0.6310, Macro F1: 0.5726
+Epoch 79, Loss: 0.8656422098477682
+Validation Accuracy: 0.6310, Macro F1: 0.5697
+Epoch 80, Loss: 0.7801036834716797
+Validation Accuracy: 0.6071, Macro F1: 0.5446
+Epoch 81, Loss: 0.7914554675420126
+Validation Accuracy: 0.6310, Macro F1: 0.5683
+Epoch 82, Loss: 0.7963792483011881
+Validation Accuracy: 0.6190, Macro F1: 0.5543
+Epoch 83, Loss: 0.7932241360346476
+Validation Accuracy: 0.6071, Macro F1: 0.5447
+Epoch 84, Loss: 0.7611437638600668
+Validation Accuracy: 0.6310, Macro F1: 0.5707
+Epoch 85, Loss: 0.7741512457529703
+Validation Accuracy: 0.6310, Macro F1: 0.5716
+Epoch 86, Loss: 0.8011126716931661
+Validation Accuracy: 0.6429, Macro F1: 0.5815
+Epoch 87, Loss: 0.7867622375488281
+Validation Accuracy: 0.6071, Macro F1: 0.5447
+Epoch 88, Loss: 0.7483210762341818
+Validation Accuracy: 0.5476, Macro F1: 0.4784
+Epoch 89, Loss: 0.7700317700703939
+Validation Accuracy: 0.6190, Macro F1: 0.5567
+Epoch 90, Loss: 0.7047728498776754
+Validation Accuracy: 0.6190, Macro F1: 0.5600
+Epoch 91, Loss: 0.7448065280914307
+Validation Accuracy: 0.6667, Macro F1: 0.6014
+Epoch 92, Loss: 0.738217850526174
+Validation Accuracy: 0.6190, Macro F1: 0.5610
+Epoch 93, Loss: 0.7195527950922648
+Validation Accuracy: 0.6310, Macro F1: 0.5697
+Epoch 94, Loss: 0.7952096462249756
+Validation Accuracy: 0.6310, Macro F1: 0.5683
+Epoch 95, Loss: 0.7240093549092611
+Validation Accuracy: 0.6548, Macro F1: 0.5905
+Epoch 96, Loss: 0.7148817380269369
+Validation Accuracy: 0.6429, Macro F1: 0.5812
+Epoch 97, Loss: 0.7297193805376688
+Validation Accuracy: 0.6429, Macro F1: 0.5815
+Epoch 98, Loss: 0.7656583388646444
+Validation Accuracy: 0.6310, Macro F1: 0.5716
+Epoch 99, Loss: 0.7642337282498678
+Validation Accuracy: 0.6071, Macro F1: 0.5447
+Epoch 100, Loss: 0.7267260154088339
+Validation Accuracy: 0.6190, Macro F1: 0.5515
+
+
+STDERR:
+

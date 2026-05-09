@@ -1,0 +1,31 @@
+attempt=0
+returncode=1
+elapsed_sec=3.37
+
+STDOUT:
+
+
+STDERR:
+/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/CGCC/solution.py:81: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+Traceback (most recent call last):
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/CGCC/solution.py", line 85, in <module>
+    for batch in train_loader:
+                 ^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/torch/utils/data/dataloader.py", line 741, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/torch/utils/data/dataloader.py", line 801, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/CGCC/solution.py", line 47, in __getitem__
+    graph = nx_to_pyg(path)
+            ^^^^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/CGCC/solution.py", line 20, in nx_to_pyg
+    G = pickle.load(f)
+        ^^^^^^
+NameError: name 'pickle' is not defined. Did you forget to import 'pickle'?
+

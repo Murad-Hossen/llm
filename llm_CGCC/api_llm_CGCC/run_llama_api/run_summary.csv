@@ -1,0 +1,2 @@
+mode,provider,model,success,repairs_used,temperature,top_p,max_output_tokens,total_elapsed_sec
+api_only,together,meta-llama/Llama-3.3-70B-Instruct-Turbo,1,3,0,0.99,4000,74.14

@@ -1,0 +1,12 @@
+{
+  "mode": "api_only",
+  "provider": "together",
+  "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+  "temperature": 0,
+  "top_p": 0.99,
+  "max_output_tokens": 4000,
+  "repair_limit": 5,
+  "timeout_sec": 3600,
+  "prompt_path": "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/api_llm_CGCC/prompt_filled.md",
+  "cgcc_dir": "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_CGCC/CGCC"
+}
