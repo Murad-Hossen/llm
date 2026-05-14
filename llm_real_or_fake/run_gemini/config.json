@@ -1,0 +1,13 @@
+{
+  "mode": "api_only",
+  "provider": "google",
+  "model": "gemini-2.5-pro",
+  "temperature": 0,
+  "top_p": 0.99,
+  "max_output_tokens": 10000,
+  "repair_limit": 5,
+  "timeout_sec": 3600,
+  "prompt_path": "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/llm_real_or_fake/prompt_filled.md",
+  "arena_dir": "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/Real_Or_Fake",
+  "submission_file": "predictions.csv"
+}

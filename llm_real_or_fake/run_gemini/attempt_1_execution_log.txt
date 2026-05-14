@@ -1,0 +1,32 @@
+attempt=1
+returncode=1
+elapsed_sec=5.72
+
+STDOUT:
+Loading dataset...
+Processing raw data...
+
+
+STDERR:
+Processing...
+Traceback (most recent call last):
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/Real_Or_Fake/solution.py", line 202, in <module>
+    dataset = FakeNewsDataset(root=DATA_PATH)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/Real_Or_Fake/solution.py", line 30, in __init__
+    super(FakeNewsDataset, self).__init__(root, transform, pre_transform)
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/torch_geometric/data/dataset.py", line 115, in __init__
+    self._process()
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/torch_geometric/data/dataset.py", line 265, in _process
+    self.process()
+  File "/Users/muradhossen/Library/CloudStorage/GoogleDrive-murad09buet@gmail.com/My Drive/GNN RISING STAR/Real_Or_Fake/solution.py", line 52, in process
+    bert_features = load_npz(os.path.join(self.raw_dir, 'new_bert_feature.npz')).toarray()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muradhossen/Library/Python/3.12/lib/python/site-packages/scipy/sparse/_matrix_io.py", line 138, in load_npz
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/public/raw/new_bert_feature.npz'
+

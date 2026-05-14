@@ -1,0 +1,7 @@
+{
+  "team": "llm_api_gemini-2.5-pro",
+  "run_id": "gemini_run_01",
+  "type": "LLM",
+  "model": "GATConv",
+  "notes": "API-only baseline using Gemini 2.5 Pro. Generated solution.py via single-prompt API call, executed locally, produced predictions.csv (see llm_real_or_fake/run_gemini/)."
+}

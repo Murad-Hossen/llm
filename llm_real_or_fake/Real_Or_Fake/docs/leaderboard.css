@@ -1,0 +1,97 @@
+:root {
+  --bg: #0e0f12;
+  --panel: #16181d;
+  --text: #e6e7eb;
+  --muted: #9aa0aa;
+  --accent: #46d39a;
+  --border: #2a2d35;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero {
+  padding: 40px 20px;
+  background: radial-gradient(1200px 400px at 10% 10%, #1f2a36, transparent),
+              radial-gradient(800px 300px at 90% 0%, #16221a, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+}
+
+p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 200px 200px;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.controls input,
+.controls select {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.table-wrap {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: auto;
+}
+
+#leaderboard {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#leaderboard th,
+#leaderboard td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 13px;
+}
+
+#leaderboard th {
+  position: sticky;
+  top: 0;
+  background: #1b1f26;
+}
+
+#leaderboard tr:hover td {
+  background: #1b2028;
+}
+
+@media (max-width: 800px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}

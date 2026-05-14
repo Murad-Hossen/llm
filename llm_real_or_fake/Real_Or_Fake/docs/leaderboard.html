@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GNN Challenge Leaderboard</title>
+  <link rel="stylesheet" href="leaderboard.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>GNN Challenge Leaderboard</h1>
+      <p>Human vs LLM submissions, scored on the hidden test set.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="search" type="search" placeholder="Search team, model, notes..." />
+      <select id="typeFilter">
+        <option value="all">All types</option>
+        <option value="human">Human</option>
+        <option value="llm">LLM</option>
+        <option value="hybrid">Human + LLM</option>
+        <option value="unknown">Unknown</option>
+      </select>
+      <select id="sortBy">
+        <option value="f1_score">Sort by F1</option>
+        <option value="accuracy">Sort by Accuracy</option>
+        <option value="submission_date">Sort by Date</option>
+      </select>
+    </section>
+
+    <section class="table-wrap">
+      <table id="leaderboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Run</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>F1</th>
+            <th>Accuracy</th>
+            
+            <th>Date</th>
+            <!-- <th>Submitter</th> -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="leaderboard.js"></script>
+</body>
+</html>

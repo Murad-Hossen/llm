@@ -1,0 +1,53 @@
+
+# Ignore raw Citeseer data in public
+public/raw/citeseer/
+private/
+private_test_edges.csv
+script/
+scripts/
+*.seed
+seed.txt
+*.tmp
+# Raw datasets
+data/raw/
+data/private/
+datasets/
+
+# Secrets
+seed.txt
+*.key
+*.env
+encryption/private_key.pem
+# ----------------------------
+# Ignore Python cache / compiled files
+# ----------------------------
+__pycache__/
+*.pyc
+*.pyo
+
+# Python virtual environment
+.venv/
+venv/
+
+# ----------------------------
+# Ignore Jupyter notebook checkpoints
+# ----------------------------
+.ipynb_checkpoints/
+
+# ----------------------------
+# Ignore OS junk files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Ignore ZIPs if you don't want them tracked (optional)
+# ----------------------------
+NetLinkArena_Dataset.zip
+NetLinkArena_Dataset/
+# Encryption - never commit private key!
+encryption/private_key.pem
+
+# Submissions (handled via Google Form)
+submissions/
+temp_submissions/

@@ -1,0 +1,64 @@
+attempt=3
+returncode=0
+elapsed_sec=255.16
+
+STDOUT:
+Loading dataset...
+Data loaded. Train: 3826, Val: 546, Test: 1092
+Starting training...
+Epoch: 001, Loss: 0.8361, Val Acc: 0.5165
+New best model saved with validation accuracy: 0.5165
+Epoch: 002, Loss: 0.9359, Val Acc: 0.5147
+Epoch: 003, Loss: 0.8629, Val Acc: 0.4853
+Epoch: 004, Loss: 0.8563, Val Acc: 0.5311
+New best model saved with validation accuracy: 0.5311
+Epoch: 005, Loss: 0.8419, Val Acc: 0.5147
+Epoch: 006, Loss: 0.7591, Val Acc: 0.5147
+Epoch: 007, Loss: 0.8067, Val Acc: 0.7509
+New best model saved with validation accuracy: 0.7509
+Epoch: 008, Loss: 0.7230, Val Acc: 0.5751
+Epoch: 009, Loss: 0.6904, Val Acc: 0.5916
+Epoch: 010, Loss: 0.6773, Val Acc: 0.6209
+Epoch: 011, Loss: 0.6064, Val Acc: 0.7070
+Epoch: 012, Loss: 0.6148, Val Acc: 0.7582
+New best model saved with validation accuracy: 0.7582
+Epoch: 013, Loss: 0.5686, Val Acc: 0.7857
+New best model saved with validation accuracy: 0.7857
+Epoch: 014, Loss: 0.5258, Val Acc: 0.7747
+Epoch: 015, Loss: 0.5162, Val Acc: 0.8718
+New best model saved with validation accuracy: 0.8718
+Epoch: 016, Loss: 0.4866, Val Acc: 0.8095
+Epoch: 017, Loss: 0.4917, Val Acc: 0.8150
+Epoch: 018, Loss: 0.4581, Val Acc: 0.8956
+New best model saved with validation accuracy: 0.8956
+Epoch: 019, Loss: 0.4329, Val Acc: 0.8718
+Epoch: 020, Loss: 0.4484, Val Acc: 0.8700
+Epoch: 021, Loss: 0.3966, Val Acc: 0.8791
+Epoch: 022, Loss: 0.3989, Val Acc: 0.9011
+New best model saved with validation accuracy: 0.9011
+Epoch: 023, Loss: 0.4037, Val Acc: 0.9048
+New best model saved with validation accuracy: 0.9048
+Epoch: 024, Loss: 0.3836, Val Acc: 0.8938
+Epoch: 025, Loss: 0.3711, Val Acc: 0.8828
+Epoch: 026, Loss: 0.3656, Val Acc: 0.9231
+New best model saved with validation accuracy: 0.9231
+Epoch: 027, Loss: 0.3527, Val Acc: 0.9048
+Epoch: 028, Loss: 0.3807, Val Acc: 0.9286
+New best model saved with validation accuracy: 0.9286
+Epoch: 029, Loss: 0.3748, Val Acc: 0.8681
+Epoch: 030, Loss: 0.3449, Val Acc: 0.8736
+Epoch: 031, Loss: 0.3503, Val Acc: 0.9011
+Epoch: 032, Loss: 0.3482, Val Acc: 0.8938
+Epoch: 033, Loss: 0.3267, Val Acc: 0.8718
+Epoch: 034, Loss: 0.3347, Val Acc: 0.8608
+Epoch: 035, Loss: 0.3144, Val Acc: 0.8791
+Epoch: 036, Loss: 0.3033, Val Acc: 0.8846
+Epoch: 037, Loss: 0.3056, Val Acc: 0.9212
+Epoch: 038, Loss: 0.3033, Val Acc: 0.8223
+Early stopping at epoch 38. Best validation accuracy: 0.9286
+Generating predictions on the test set...
+Submission file 'predictions.csv' created successfully.
+
+
+STDERR:
+

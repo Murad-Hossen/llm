@@ -1,0 +1,118 @@
+attempt=1
+returncode=0
+elapsed_sec=14.29
+
+STDOUT:
+Using device: cpu
+Loading data from data/public...
+Preparing data tensors...
+Starting training...
+Epoch 001: Loss: 1.5179, Val AUC: 0.5000 (New best!)
+Epoch 002: Loss: 19.5852, Val AUC: 0.5709 (New best!)
+Epoch 003: Loss: 4.5686, Val AUC: 0.5890 (New best!)
+Epoch 004: Loss: 3.3178, Val AUC: 0.6048 (New best!)
+Epoch 005: Loss: 3.5595, Val AUC: 0.6384 (New best!)
+Epoch 006: Loss: 2.9706, Val AUC: 0.6817 (New best!)
+Epoch 007: Loss: 2.0776, Val AUC: 0.6718
+Epoch 008: Loss: 2.0942, Val AUC: 0.6730
+Epoch 009: Loss: 2.1861, Val AUC: 0.6739
+Epoch 010: Loss: 2.3405, Val AUC: 0.6703
+Epoch 011: Loss: 2.2677, Val AUC: 0.6707
+Epoch 012: Loss: 1.9915, Val AUC: 0.6826 (New best!)
+Epoch 013: Loss: 1.9022, Val AUC: 0.7067 (New best!)
+Epoch 014: Loss: 1.6014, Val AUC: 0.7200 (New best!)
+Epoch 015: Loss: 1.6495, Val AUC: 0.7300 (New best!)
+Epoch 016: Loss: 1.6007, Val AUC: 0.7398 (New best!)
+Epoch 017: Loss: 1.5469, Val AUC: 0.7364
+Epoch 018: Loss: 1.6451, Val AUC: 0.7209
+Epoch 019: Loss: 1.6359, Val AUC: 0.7155
+Epoch 020: Loss: 1.6973, Val AUC: 0.7294
+Epoch 021: Loss: 1.6608, Val AUC: 0.7452 (New best!)
+Epoch 022: Loss: 1.4688, Val AUC: 0.7580 (New best!)
+Epoch 023: Loss: 1.4277, Val AUC: 0.7749 (New best!)
+Epoch 024: Loss: 1.3853, Val AUC: 0.7827 (New best!)
+Epoch 025: Loss: 1.3826, Val AUC: 0.7852 (New best!)
+Epoch 026: Loss: 1.3363, Val AUC: 0.7960 (New best!)
+Epoch 027: Loss: 1.2720, Val AUC: 0.7951
+Epoch 028: Loss: 1.2155, Val AUC: 0.7970 (New best!)
+Epoch 029: Loss: 1.3130, Val AUC: 0.8037 (New best!)
+Epoch 030: Loss: 1.2451, Val AUC: 0.7960
+Epoch 031: Loss: 1.1698, Val AUC: 0.8015
+Epoch 032: Loss: 1.1875, Val AUC: 0.8088 (New best!)
+Epoch 033: Loss: 1.1573, Val AUC: 0.8107 (New best!)
+Epoch 034: Loss: 1.1450, Val AUC: 0.8210 (New best!)
+Epoch 035: Loss: 1.0304, Val AUC: 0.8253 (New best!)
+Epoch 036: Loss: 1.0134, Val AUC: 0.8258 (New best!)
+Epoch 037: Loss: 0.9932, Val AUC: 0.8297 (New best!)
+Epoch 038: Loss: 1.0262, Val AUC: 0.8294
+Epoch 039: Loss: 1.0340, Val AUC: 0.8269
+Epoch 040: Loss: 1.0050, Val AUC: 0.8206
+Epoch 041: Loss: 0.9354, Val AUC: 0.8173
+Epoch 042: Loss: 0.9590, Val AUC: 0.8210
+Epoch 043: Loss: 0.9427, Val AUC: 0.8293
+Epoch 044: Loss: 0.9428, Val AUC: 0.8339 (New best!)
+Epoch 045: Loss: 0.8666, Val AUC: 0.8320
+Epoch 046: Loss: 0.9005, Val AUC: 0.8245
+Epoch 047: Loss: 0.8623, Val AUC: 0.8242
+Epoch 048: Loss: 0.8700, Val AUC: 0.8311
+Epoch 049: Loss: 0.8340, Val AUC: 0.8306
+Epoch 050: Loss: 0.8245, Val AUC: 0.8288
+Epoch 051: Loss: 0.8397, Val AUC: 0.8323
+Epoch 052: Loss: 0.8001, Val AUC: 0.8363 (New best!)
+Epoch 053: Loss: 0.8092, Val AUC: 0.8382 (New best!)
+Epoch 054: Loss: 0.7939, Val AUC: 0.8286
+Epoch 055: Loss: 0.7904, Val AUC: 0.8282
+Epoch 056: Loss: 0.7714, Val AUC: 0.8371
+Epoch 057: Loss: 0.7680, Val AUC: 0.8398 (New best!)
+Epoch 058: Loss: 0.7953, Val AUC: 0.8376
+Epoch 059: Loss: 0.7195, Val AUC: 0.8372
+Epoch 060: Loss: 0.7558, Val AUC: 0.8370
+Epoch 061: Loss: 0.7360, Val AUC: 0.8346
+Epoch 062: Loss: 0.7222, Val AUC: 0.8401 (New best!)
+Epoch 063: Loss: 0.7018, Val AUC: 0.8442 (New best!)
+Epoch 064: Loss: 0.7495, Val AUC: 0.8445 (New best!)
+Epoch 065: Loss: 0.6973, Val AUC: 0.8411
+Epoch 066: Loss: 0.6488, Val AUC: 0.8380
+Epoch 067: Loss: 0.7458, Val AUC: 0.8392
+Epoch 068: Loss: 0.6366, Val AUC: 0.8399
+Epoch 069: Loss: 0.6575, Val AUC: 0.8405
+Epoch 070: Loss: 0.6794, Val AUC: 0.8397
+Epoch 071: Loss: 0.6653, Val AUC: 0.8402
+Epoch 072: Loss: 0.6685, Val AUC: 0.8415
+Epoch 073: Loss: 0.6619, Val AUC: 0.8422
+Epoch 074: Loss: 0.6227, Val AUC: 0.8419
+Epoch 075: Loss: 0.6299, Val AUC: 0.8419
+Epoch 076: Loss: 0.6325, Val AUC: 0.8410
+Epoch 077: Loss: 0.6076, Val AUC: 0.8395
+Epoch 078: Loss: 0.6592, Val AUC: 0.8380
+Epoch 079: Loss: 0.7012, Val AUC: 0.8379
+Epoch 080: Loss: 0.6149, Val AUC: 0.8383
+Epoch 081: Loss: 0.6088, Val AUC: 0.8380
+Epoch 082: Loss: 0.6021, Val AUC: 0.8375
+Epoch 083: Loss: 0.6274, Val AUC: 0.8376
+Epoch 084: Loss: 0.5967, Val AUC: 0.8357
+Epoch 085: Loss: 0.6033, Val AUC: 0.8347
+Epoch 086: Loss: 0.5786, Val AUC: 0.8359
+Epoch 087: Loss: 0.6295, Val AUC: 0.8388
+Epoch 088: Loss: 0.6280, Val AUC: 0.8393
+Epoch 089: Loss: 0.5950, Val AUC: 0.8386
+Epoch 090: Loss: 0.6098, Val AUC: 0.8389
+Epoch 091: Loss: 0.5810, Val AUC: 0.8372
+Epoch 092: Loss: 0.5956, Val AUC: 0.8370
+Epoch 093: Loss: 0.5888, Val AUC: 0.8373
+Epoch 094: Loss: 0.5854, Val AUC: 0.8387
+Early stopping at epoch 94. Best Val AUC: 0.8445
+Training finished in 8.70 seconds.
+Generating final predictions on the test set...
+Submission file 'predictions.csv' created successfully!
+Top 5 predictions:
+   id    y_pred
+0   0  0.639810
+1   1  0.585923
+2   2  0.998641
+3   3  0.670864
+4   4  0.972181
+
+
+STDERR:
+

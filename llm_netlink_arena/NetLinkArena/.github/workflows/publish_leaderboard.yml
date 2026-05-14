@@ -1,0 +1,50 @@
+name: Publish Leaderboard
+
+# Trigger when leaderboard CSV is updated on main branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'leaderboard/leaderboard.csv'
+
+jobs:
+  render-leaderboard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install Dependencies
+        run: |
+          pip install pandas pyyaml
+      
+      - name: Render Leaderboard Markdown
+        run: |
+          python competition/render_leaderboard.py
+          echo "✅ Leaderboard markdown rendered"
+      
+      - name: Commit Updated Markdown
+        run: |
+          git config --global user.name "NetLinkArena Bot"
+          git config --global user.email "bot@netlinkarena.com"
+          
+          git add leaderboard/leaderboard.md
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "📊 Auto-render leaderboard markdown"
+            git push origin main
+            echo "✅ Leaderboard markdown published"
+          fi

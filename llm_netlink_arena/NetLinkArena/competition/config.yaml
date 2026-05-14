@@ -1,0 +1,6 @@
+task: link_prediction
+metrics:
+  - roc_auc
+  - average_precision
+target_column: y_pred
+id_column: id

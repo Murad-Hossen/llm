@@ -1,0 +1,272 @@
+import os
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn.functional as F
+from torch.nn import Linear, Sequential, ReLU, Dropout
+from torch_geometric.data import Dataset, Data
+from torch_geometric.loader import DataLoader
+from torch_geometric.nn import GATConv, global_mean_pool
+from sklearn.preprocessing import StandardScaler
+from scipy.sparse import load_npz
+from tqdm import tqdm
+import warnings
+
+warnings.filterwarnings("ignore", category=UserWarning)
+
+# Configuration
+DATA_PATH = 'data/public'
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+BATCH_SIZE = 64
+EPOCHS = 100
+LEARNING_RATE = 0.0005
+WEIGHT_DECAY = 1e-5
+HIDDEN_CHANNELS = 128
+NUM_HEADS = 4
+PATIENCE = 10
+
+class FakeNewsDataset(Dataset):
+    def __init__(self, root, transform=None, pre_transform=None):
+        super(FakeNewsDataset, self).__init__(root, transform, pre_transform)
+        self.data_list = torch.load(self.processed_paths[0])
+
+    @property
+    def raw_file_names(self):
+        return [
+            'A.txt', 'new_bert_feature.npz', 'new_spacy_feature.npz',
+            'new_profile_feature.npz', 'node_graph_id.npy', 'train_idx.npy',
+            'train_labels.csv', 'val_idx.npy', 'val_labels.csv', 'test_idx.npy'
+        ]
+
+    @property
+    def processed_file_names(self):
+        return ['data.pt']
+
+    def download(self):
+        # Data is assumed to be in DATA_PATH
+        pass
+
+    def process(self):
+        print("Processing raw data...")
+        # Load node features
+        bert_features = load_npz(os.path.join(self.raw_dir, 'new_bert_feature.npz')).toarray()
+        spacy_features = load_npz(os.path.join(self.raw_dir, 'new_spacy_feature.npz')).toarray()
+        profile_features = load_npz(os.path.join(self.raw_dir, 'new_profile_feature.npz')).toarray()
+
+        # Load graph structure
+        edge_df = pd.read_csv(os.path.join(self.raw_dir, 'A.txt'), header=None, sep=',')
+        edge_index = torch.tensor(edge_df.values, dtype=torch.long).t().contiguous()
+        node_graph_id = np.load(os.path.join(self.raw_dir, 'node_graph_id.npy'))
+
+        # Load labels
+        train_labels_df = pd.read_csv(os.path.join(self.raw_dir, 'train_labels.csv'))
+        val_labels_df = pd.read_csv(os.path.join(self.raw_dir, 'val_labels.csv'))
+        labels_df = pd.concat([train_labels_df, val_labels_df])
+        labels = {row['id']: row['y_true'] for _, row in labels_df.iterrows()}
+
+        # Scale profile features
+        train_idx = np.load(os.path.join(self.raw_dir, 'train_idx.npy'))
+        train_nodes_mask = np.isin(node_graph_id, train_idx)
+        
+        scaler = StandardScaler()
+        scaler.fit(profile_features[train_nodes_mask])
+        scaled_profile_features = scaler.transform(profile_features)
+
+        # Combine features
+        x = torch.tensor(np.concatenate([bert_features, spacy_features, scaled_profile_features], axis=1), dtype=torch.float)
+
+        # Group nodes and edges by graph
+        num_graphs = node_graph_id.max() + 1
+        graph_nodes = [[] for _ in range(num_graphs)]
+        for i, graph_id in enumerate(node_graph_id):
+            graph_nodes[graph_id].append(i)
+
+        data_list = []
+        for graph_id in tqdm(range(num_graphs), desc="Building graphs"):
+            if not graph_nodes[graph_id]:
+                continue
+
+            node_ids = torch.tensor(graph_nodes[graph_id], dtype=torch.long)
+            node_map = {node_id.item(): i for i, node_id in enumerate(node_ids)}
+            
+            # Filter edges for the current graph
+            mask = torch.isin(edge_index[0], node_ids) & torch.isin(edge_index[1], node_ids)
+            graph_edge_index = edge_index[:, mask]
+            
+            # Remap edge indices to be local to the graph
+            local_edge_index = torch.tensor([[node_map[src.item()], node_map[dst.item()]] for src, dst in graph_edge_index.t()], dtype=torch.long).t().contiguous()
+
+            graph_x = x[node_ids]
+            
+            # The first node in the list for a graph is typically the root
+            root_n_id = 0 
+
+            y = torch.tensor([labels.get(graph_id, -1)], dtype=torch.float)
+
+            data = Data(x=graph_x, edge_index=local_edge_index, y=y, id=graph_id, root_n_id=torch.tensor([root_n_id], dtype=torch.long))
+            data_list.append(data)
+
+        torch.save(data_list, self.processed_paths[0])
+        print("Processing finished.")
+
+    def len(self):
+        return len(self.data_list)
+
+    def get(self, idx):
+        return self.data_list[idx]
+
+class GNNModel(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels, heads=4):
+        super(GNNModel, self).__init__()
+        self.conv1 = GATConv(in_channels, hidden_channels, heads=heads, dropout=0.6)
+        self.conv2 = GATConv(hidden_channels * heads, hidden_channels, heads=heads, dropout=0.6)
+        self.conv3 = GATConv(hidden_channels * heads, hidden_channels, heads=1, concat=False, dropout=0.6)
+
+        self.root_transform = Sequential(
+            Linear(in_channels, hidden_channels),
+            ReLU(),
+            Dropout(0.5)
+        )
+
+        self.classifier = Sequential(
+            Linear(hidden_channels * 2, hidden_channels),
+            ReLU(),
+            Dropout(0.5),
+            Linear(hidden_channels, out_channels)
+        )
+
+    def forward(self, data):
+        x, edge_index, batch, root_n_id = data.x, data.edge_index, data.batch, data.root_n_id
+        
+        # GAT layers
+        x = F.dropout(x, p=0.6, training=self.training)
+        x = F.elu(self.conv1(x, edge_index))
+        x = F.dropout(x, p=0.6, training=self.training)
+        x = F.elu(self.conv2(x, edge_index))
+        x = F.dropout(x, p=0.6, training=self.training)
+        x = self.conv3(x, edge_index)
+
+        # Global graph representation
+        graph_rep = global_mean_pool(x, batch)
+
+        # Root node representation
+        root_features = x[root_n_id]
+        
+        # Concatenate and classify
+        combined_rep = torch.cat([graph_rep, root_features], dim=1)
+        out = self.classifier(combined_rep)
+        
+        return torch.sigmoid(out)
+
+def train(model, loader, optimizer, criterion):
+    model.train()
+    total_loss = 0
+    for data in loader:
+        data = data.to(DEVICE)
+        optimizer.zero_grad()
+        out = model(data)
+        loss = criterion(out.squeeze(), data.y)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item() * data.num_graphs
+    return total_loss / len(loader.dataset)
+
+def evaluate(model, loader):
+    model.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data in loader:
+            data = data.to(DEVICE)
+            out = model(data)
+            pred = (out.squeeze() > 0.5).float()
+            correct += (pred == data.y).sum().item()
+            total += data.num_graphs
+    return correct / total
+
+def predict(model, loader):
+    model.eval()
+    predictions = []
+    graph_ids = []
+    with torch.no_grad():
+        for data in loader:
+            data = data.to(DEVICE)
+            out = model(data)
+            predictions.extend(out.squeeze().cpu().numpy())
+            graph_ids.extend(data.id.cpu().numpy())
+    return graph_ids, predictions
+
+if __name__ == '__main__':
+    # --- 1. Load and prepare data ---
+    print("Loading dataset...")
+    dataset = FakeNewsDataset(root=DATA_PATH)
+    
+    train_idx_np = np.load(os.path.join(DATA_PATH, 'train_idx.npy'))
+    val_idx_np = np.load(os.path.join(DATA_PATH, 'val_idx.npy'))
+    test_idx_np = np.load(os.path.join(DATA_PATH, 'test_idx.npy'))
+
+    # Map graph IDs to dataset indices
+    id_to_idx_map = {data.id: i for i, data in enumerate(dataset)}
+    
+    train_indices = [id_to_idx_map[i] for i in train_idx_np if i in id_to_idx_map]
+    val_indices = [id_to_idx_map[i] for i in val_idx_np if i in id_to_idx_map]
+    test_indices = [id_to_idx_map[i] for i in test_idx_np if i in id_to_idx_map]
+
+    train_dataset = dataset[train_indices]
+    val_dataset = dataset[val_indices]
+    test_dataset = dataset[test_indices]
+
+    train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
+    print(f"Data loaded. Train: {len(train_dataset)}, Val: {len(val_dataset)}, Test: {len(test_dataset)}")
+
+    # --- 2. Initialize model, optimizer, and loss ---
+    in_channels = dataset.num_node_features
+    model = GNNModel(in_channels, HIDDEN_CHANNELS, 1, heads=NUM_HEADS).to(DEVICE)
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
+    criterion = torch.nn.BCELoss()
+
+    # --- 3. Training loop with early stopping ---
+    best_val_acc = 0
+    patience_counter = 0
+    best_model_state = None
+
+    print("Starting training...")
+    for epoch in range(1, EPOCHS + 1):
+        loss = train(model, train_loader, optimizer, criterion)
+        val_acc = evaluate(model, val_loader)
+        
+        print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}, Val Acc: {val_acc:.4f}')
+
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            patience_counter = 0
+            best_model_state = model.state_dict()
+            torch.save(best_model_state, 'best_model.pth')
+            print(f"New best model saved with validation accuracy: {best_val_acc:.4f}")
+        else:
+            patience_counter += 1
+
+        if patience_counter >= PATIENCE:
+            print(f"Early stopping at epoch {epoch}. Best validation accuracy: {best_val_acc:.4f}")
+            break
+    
+    # --- 4. Generate predictions on the test set ---
+    print("Generating predictions on the test set...")
+    if best_model_state:
+        model.load_state_dict(best_model_state)
+    else:
+        print("Warning: No best model was saved. Using the model from the last epoch.")
+
+    graph_ids, predictions = predict(model, test_loader)
+    
+    # --- 5. Save submission file ---
+    submission_df = pd.DataFrame({'id': graph_ids, 'y_pred': predictions})
+    
+    # Ensure the order matches test_idx.npy
+    test_id_df = pd.DataFrame({'id': test_idx_np})
+    submission_df = test_id_df.merge(submission_df, on='id', how='left')
+    
+    submission_df.to_csv('predictions.csv', index=False)
+    print("Submission file 'predictions.csv' created successfully.")
